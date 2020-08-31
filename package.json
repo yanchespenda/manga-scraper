@@ -1,5 +1,5 @@
 {
-  "name": "with-typescript",
+  "name": "manga-scraping",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
@@ -8,14 +8,22 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "formik": "^2.1.5",
+    "formik-material-ui": "^3.0.0-alpha.0",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "latest",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "swr": "^0.3.1"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
-    "@types/react": "^16.9.16",
-    "@types/react-dom": "^16.9.4",
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "sass": "^1.26.10",
     "typescript": "4.0"
   },
   "license": "MIT"

@@ -1,0 +1,84 @@
+.headerContainer {
+    min-height: 56px;
+
+    @media (min-width: 0px) and (orientation: landscape) {
+        min-height: 48px;
+    }
+
+    @media (min-width: 600px) {
+        min-height: 64px;
+    }
+}
+
+.headerSubChild {
+    line-height: 64px;
+}
+
+.headerContainerMenuBar {
+    // margin-left: 24px !important;
+    display: none;
+}
+
+.headerSubtitleDrawerBtn {
+    display: block;
+}
+
+.headerAppLogoContainer {
+    display: block;
+
+    .imgContainer {
+        height: 43px;
+        width: auto;
+        float: left;
+
+        img {
+            height: 43px;
+            width: auto;
+        }
+    }
+
+    .text {
+        line-height: 43px;
+        margin-top: 2px;
+        margin-left: 5px;
+        float: left;
+        text-transform: uppercase;
+        // color: black;
+
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0.005em;
+    }
+}
+
+@media (min-width: 900px) {
+    .headerContainerMenuBar {
+        display: block;
+    }
+
+    .headerSubtitleDrawerBtn {
+        display: none;
+    }
+
+    .headerSubTools {
+        padding-left: 16px;
+    }
+}
+
+.headerMenuButtonText, .headerMenuButtonText span {
+    color: #fff;
+}
+
+.menuLink {
+    color: #fff;
+}
+
+.menuNavbar {
+    .list {
+        .nested {
+            padding-left: 32px;
+        }
+    }
+    
+}
+
