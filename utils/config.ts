@@ -1,9 +1,9 @@
-
-export const config = {
-    // API_URL: 'https://project-streaming.dev/api/',
-    // API_URL: 'https://mypony.asia/api/',
-    API_VERSION: 'v2.0/alfa/',
+export const environment = {
+    // API_URL: 'http://127.0.0.1:8080/',
+    API_URL: 'https://manga-scraper-api.herokuapp.com/',
+    API_VERSION: 'api/_next/',
     RECAPTCHA_SITE_KEY: '',
     WEB_NAME: 'Manga Image Scraping',
-    GITHUB_LINK: 'admin@mail.mypony.asia'
+    GITHUB_LINK: 'https://github.com/yanchespenda',
+    FOOTER_TEXT: 'Copyright(c) 2020 - Alfian Rikzandi'
 }
