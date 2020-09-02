@@ -50,7 +50,7 @@ export default function ReaderPage ({ readerData }: IReaderPage) {
                         </div>
                         <div className={ ReaderStyle.readerCanvasContainer }>
                             {
-                                readerData.images.map((item, idx) => {
+                                readerData.images?.map((item, idx) => {
 
                                     return (
                                         <LazyImage
