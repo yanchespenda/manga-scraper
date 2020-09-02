@@ -15,7 +15,11 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Snackbar from '@material-ui/core/Snackbar' 
 import IconButton from '@material-ui/core/IconButton'
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
 
 /* Material-UI Icon */
 import CloseIcon from '@material-ui/icons/Close'
@@ -39,6 +43,10 @@ interface IResAction {
     link: string
 }
 
+interface IResInfo {
+    title: string
+}
+
 
 export default function IndexPage ({ sitesData }: IIndexPage) {
     const [IsLoading, setIsLoading] = useState(false)
@@ -48,6 +56,7 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
     const [PDFAction, setPDFAction] = useState<IResAction>({enable: false, link: ''})
     const [ReaderAction, setReaderAction] = useState<IResAction>({enable: false, link: ''})
     const [IsLoadingPDF, setIsLoadingPDF] = useState(false)
+    const [ResInfo, setResInfo] = useState<IResInfo>({title: ''})
 
     const runGetImages = (data: InterfaceForm, resetForm: Function, isLoading: Function) => {
         if (!IsLoading && !IsLoadingPDF) {
@@ -61,6 +70,7 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                 // console.log('res',res)
                 setPDFAction(res.data.pdfLink)
                 setReaderAction(res.data.reader)
+                setResInfo(res.data.info)
                 setActionContainer(true)
                 resetForm({})
             }).catch( (error) => {
@@ -171,10 +181,12 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                                     />
                                     <div className={[IndexStyle.formAction, 'layout-row layout-align-center-center'].join(' ')}>
                                         <Button
+                                            startIcon={isSubmitting ? <CircularProgress size="1rem" /> : null}
                                             variant="contained"
                                             color="primary"
-                                            disabled={ isSubmitting }
+                                            disabled={ isSubmitting || IsLoadingPDF }
                                             onClick={ submitForm }
+                                            
                                         >
                                             Get Images
                                         </Button>
@@ -187,40 +199,50 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                 
                 {
                     ActionContainer ? (
-                        <div className={[IndexStyle.actionParent].join(' ')}>
-                            <Grid container direction="row" justify="center" alignItems="center">
-                                {
-                                    PDFAction.enable ? (
-                                        <Fragment>
-                                            {
-                                                PDFAction.link.length > 0 ? (
-                                                    <Link href={ PDFAction.link }>
-                                                        <Button variant="contained" color="primary">
-                                                            Download PDF
+                        <div className={ IndexStyle.actionParent }>
+                            <Card className="flex" variant="outlined">
+                                <CardContent>
+                                    <Typography className={IndexStyle.resultText} color="textSecondary" gutterBottom>
+                                        Result
+                                    </Typography>
+                                    <Typography variant="h5" component="h2">
+                                        { ResInfo.title }
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    {
+                                        PDFAction.enable ? (
+                                            <Fragment>
+                                                {
+                                                    PDFAction.link.length > 0 ? (
+                                                        <Link href={ PDFAction.link }>
+                                                            <Button variant="contained" color="primary">
+                                                                Download PDF
+                                                            </Button>
+                                                        </Link>
+                                                    ) : (
+                                                        <Button variant="contained" color="primary" disabled={IsLoadingPDF} onClick={ runPDF } startIcon={IsLoadingPDF ? <CircularProgress size="1rem" /> : null}>
+                                                            Generate PDF
                                                         </Button>
-                                                    </Link>
-                                                ) : (
-                                                    <Button variant="contained" color="primary" onClick={ runPDF }>
-                                                        Generate PDF
+                                                    )
+                                                }
+                                            </Fragment>
+                                        ) : ('')
+                                    }
+                                    {
+                                        ReaderAction.enable ? (
+                                            <Fragment>
+                                                <Link href={generateReaderLink(ReaderAction.link)}>
+                                                    <Button variant="contained" color="primary" disabled={IsLoadingPDF}>
+                                                        Read Online
                                                     </Button>
-                                                )
-                                            }
-                                        </Fragment>
-                                    ) : ('')
-                                }
-                                {
-                                    ReaderAction.enable ? (
-                                        <Fragment>
-                                            <Link href={generateReaderLink(ReaderAction.link)}>
-                                                <Button variant="contained" color="primary">
-                                                    Read Online
-                                                </Button>
-                                            </Link>
-                                            
-                                        </Fragment>
-                                    ) : ('')
-                                }
-                            </Grid>
+                                                </Link>
+                                                
+                                            </Fragment>
+                                        ) : ('')
+                                    }
+                                </CardActions>
+                            </Card>
                         </div>
                     ) : ('')
                 }
