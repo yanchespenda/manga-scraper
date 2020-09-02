@@ -29,6 +29,16 @@
                 min-height: 200px;
                 width: 100%;
                 margin: 0 auto;
+
+                .imagePlaceholder {
+                    width: 100%;
+                    height: 300px;
+                }
+
+                .image {
+                    width: 100%;
+                    height: auto;
+                }
             }
         }
     }

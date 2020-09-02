@@ -69,9 +69,9 @@ export default function ReaderPage () {
                                             src={ item }
                                             alt={`Image of ${readerData.title} - ${idx}`}
                                             placeholder={({ imageProps, ref }) => (
-                                                <img ref={ref} src="/assets/images/collect.gif" alt={ imageProps.alt } />
+                                                <img className={ ReaderStyle.imagePlaceholder } ref={ref} src="/assets/images/collect.gif" alt={ imageProps.alt } />
                                             )}
-                                            actual={({ imageProps }) => <img {...imageProps} />}
+                                            actual={({ imageProps }) => <img className={ ReaderStyle.image } {...imageProps} />}
                                         />
                                     )
                                 })
