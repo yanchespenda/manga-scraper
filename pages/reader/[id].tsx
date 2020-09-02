@@ -30,7 +30,7 @@ export default function ReaderPage () {
     let readerData: IReaderPage = {title: '', images: []}
 
     const id = router.query.id;
-    if (id.toString().length > 0) {
+    if (id.length > 0) {
         const url = environment.API_URL + environment.API_VERSION + 'reader?id=' + id
         const { data } = useSWR(url)
         readerData = data || {title: '', images: []}
