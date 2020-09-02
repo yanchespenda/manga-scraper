@@ -1,0 +1,35 @@
+.comikSection {
+    padding-bottom: 0 !important;
+
+    .readerContainer {
+        color: #fff;
+        outline: none;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+
+        .readerPreContainer {
+            text-align: center;
+
+            .infometa {
+                position: relative;
+                max-width: 1115px;
+                margin: 0 auto;
+                padding-top: 48px;
+
+                .metaAction {
+                    margin: 24px 0;
+                }
+            }
+
+            .readerCanvasContainer {
+                position: relative;
+                max-width: 1115px;
+                min-height: 200px;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+}

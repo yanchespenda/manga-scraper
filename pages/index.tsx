@@ -188,7 +188,7 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                                             onClick={ submitForm }
                                             
                                         >
-                                            Get Images
+                                            Start
                                         </Button>
                                     </div>
                                 </Form>
@@ -208,6 +208,9 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                                     <Typography variant="h5" component="h2">
                                         { ResInfo.title }
                                     </Typography>
+                                    {/* <Typography color="textSecondary">
+                                        adjective
+                                    </Typography> */}
                                 </CardContent>
                                 <CardActions>
                                     {
@@ -232,7 +235,7 @@ export default function IndexPage ({ sitesData }: IIndexPage) {
                                     {
                                         ReaderAction.enable ? (
                                             <Fragment>
-                                                <Link href={generateReaderLink(ReaderAction.link)}>
+                                                <Link href="reader/[id]" as={generateReaderLink(ReaderAction.link)}>
                                                     <Button variant="contained" color="primary" disabled={IsLoadingPDF}>
                                                         Read Online
                                                     </Button>
