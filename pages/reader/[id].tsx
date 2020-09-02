@@ -1,9 +1,12 @@
-import { GetServerSideProps } from "next";
+// import { GetServerSideProps } from "next";
 import { Fragment } from "react";
+import { useRouter } from 'next/router'
 import { environment } from "../../utils/config";
 import Head from "next/head";
+
 import { LazyImage } from "react-lazy-images"
-import fetch from 'isomorphic-unfetch'
+// import fetch from 'isomorphic-unfetch'
+import useSWR from 'swr'
 
 
 /* Material-UI Core */
@@ -17,14 +20,18 @@ import ReaderStyle  from "../../styles/pages/Reader.module.scss";
 import Link from "next/link";
 
 interface IReaderPage {
-    readerData: {
-        title: string,
-        images: string[]
-    }
+    title: string,
+    images: string[]
 }
 
-export default function ReaderPage ({ readerData }: IReaderPage) {
+export default function ReaderPage () {
+    const router = useRouter()
 
+    const id = router.query.id || '';
+    const url = environment.API_URL + environment.API_VERSION + 'reader?id=' + id
+    const { data } = useSWR(url)
+
+    const readerData: IReaderPage = data || {title: '', images: []}
 
     return (
         <Fragment>
@@ -74,7 +81,7 @@ export default function ReaderPage ({ readerData }: IReaderPage) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
+/* export const getServerSideProps: GetServerSideProps = async ctx => {
     const id = ctx.params?.id || '';
     const url = environment.API_URL + environment.API_VERSION + 'reader?id=' + id
     try {
@@ -93,4 +100,4 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
             readerData: []
         }
     }
-}
+} */
