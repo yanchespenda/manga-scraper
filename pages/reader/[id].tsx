@@ -27,11 +27,14 @@ interface IReaderPage {
 export default function ReaderPage () {
     const router = useRouter()
 
-    const id = router.query.id || '';
-    const url = environment.API_URL + environment.API_VERSION + 'reader?id=' + id
-    const { data } = useSWR(url)
+    let readerData: IReaderPage = {title: '', images: []}
 
-    const readerData: IReaderPage = data || {title: '', images: []}
+    const id = router.query.id;
+    if (id.toString().length > 0) {
+        const url = environment.API_URL + environment.API_VERSION + 'reader?id=' + id
+        const { data } = useSWR(url)
+        readerData = data || {title: '', images: []}
+    }
 
     return (
         <Fragment>
