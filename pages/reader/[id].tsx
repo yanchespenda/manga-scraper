@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { environment } from "../../utils/config";
 import Head from "next/head";
 import { LazyImage } from "react-lazy-images"
+import fetch from 'isomorphic-unfetch'
 
 
 /* Material-UI Core */
